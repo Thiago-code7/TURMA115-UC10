@@ -1,0 +1,33 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 30
+      arrivalRate: 5
+scenarios:
+  - flow:
+      - loop:
+          - get:
+              url: "/livros"
+          - post:
+              url: "/livros"
+              json:
+                titulo: "Livro dia do estudante"
+                autor: "Artillery"
+                ano_publicacao: 2025
+                genero: "Aventura"
+                preco: 150.85
+              capture:
+                json: "$.livro.id"
+                as: "livroId"
+          - think: 5
+          # - get:
+          #     url: "/livros/{{ livroId }}"
+        count: 100
+
+
+
+      
+
+
+
+      
